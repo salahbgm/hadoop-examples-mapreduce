@@ -104,3 +104,10 @@ $5,000) 1\
 
 ————————————————————————————————————————————————————————————————————————————————————
 
+# Remarkable trees of Paris
+
+## Download the file and put it in your HDFS home directory.
+
+**salahboughanmi@MBP-de-Salah ~ % scp /Users/salahboughanmi/Downloads/trees.csv salah.boughanmi@bigdata01.efrei.hadoop.clemlab.io:/home/salah.boughanmi/**\ 
+salah.boughanmi@bigdata01.efrei.hadoop.clemlab.io's password:\ 
+trees.csv                                                                                                  100%   16KB   1.6MB/s   00:00\ 
