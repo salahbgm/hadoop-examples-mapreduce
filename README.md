@@ -14,8 +14,8 @@ hadoop-examples-mapreduce.jar
 ## Test of wordcount on input.txt 
 ```
 [salah.boughanmi@bigdata01 ~]$ cat input.txt
-```
-```
+
+
 La tour Eiffel [tuʁɛfɛl] est une tour de fer puddlé de 330 m de hauteur située à Paris, à l’extrémité nord-ouest du parc du Champ-de-Mars en bordure de la Seine dans le 7ᵉ arrondissement. Son adresse officielle est 5, avenue Anatole-France.
 ```
 ```
@@ -23,8 +23,7 @@ La tour Eiffel [tuʁɛfɛl] est une tour de fer puddlé de 330 m de hauteur situ
 ```
 ```
 [salah.boughanmi@bigdata01 ~]$ yarn jar hadoop-examples-mapreduce.jar wordcount /user/salah.boughanmi/input.txt /user/salah.boughanmi/output-districts
-```
-```
+
 24/07/12 16:40:39 INFO mapreduce.Job: Running job: job_1720701352744_0528
 24/07/12 16:40:45 INFO mapreduce.Job: Job job_1720701352744_0528 running in uber mode : false
 24/07/12 16:40:45 INFO mapreduce.Job:  map 0% reduce 0%
@@ -97,8 +96,7 @@ La tour Eiffel [tuʁɛfɛl] est une tour de fer puddlé de 330 m de hauteur situ
 ## Proof of the wordcount
 ```
 [salah.boughanmi@bigdata01 ~]$ hdfs dfs -cat /user/salah.boughanmi/output-districts/part-r-00000
-```
-```
+
 #73956] 1
 $5,000) 1
 &   1
