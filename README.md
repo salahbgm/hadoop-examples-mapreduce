@@ -18,7 +18,9 @@ hadoop-examples-mapreduce.jar
 ```
 La tour Eiffel [tuʁɛfɛl] est une tour de fer puddlé de 330 m de hauteur située à Paris, à l’extrémité nord-ouest du parc du Champ-de-Mars en bordure de la Seine dans le 7ᵉ arrondissement. Son adresse officielle est 5, avenue Anatole-France.
 ```
+```
 [salah.boughanmi@bigdata01 ~]$ hdfs dfs -put /home/salah.boughanmi/input.txt /user/salah.boughanmi/
+```
 ```
 [salah.boughanmi@bigdata01 ~]$ yarn jar hadoop-examples-mapreduce.jar wordcount /user/salah.boughanmi/input.txt /user/salah.boughanmi/output-districts
 ```
