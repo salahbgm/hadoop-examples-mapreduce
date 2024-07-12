@@ -5,12 +5,12 @@ import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
-public class SpeciesMapper extends Mapper<LongWritable, Text, Text, NullWritable> {
+public class DistrictsMapper extends Mapper<LongWritable, Text, Text, NullWritable> {
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
         if (key.get() == 0) return; // Ignorer la première ligne
         String[] fields = value.toString().split(";");
-        String species = fields[3]; // Supposons que l'espèce est dans la quatrième colonne
-        context.write(new Text(species), NullWritable.get());
+        String district = fields[1]; // Supposons que le district est dans la deuxième colonne
+        context.write(new Text(district), NullWritable.get());
     }
 }

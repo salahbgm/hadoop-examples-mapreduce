@@ -1,24 +1,24 @@
 package com.opstty.reducer;
 
-import com.opstty.writable.AgeDistrictWritable;
-import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapreduce.Reducer;
 
 import java.io.IOException;
+import org.apache.hadoop.io.NullWritable;
+import org.apache.hadoop.mapreduce.Reducer;
+import com.opstty.writable.AgeDistrictWritable;
+import org.apache.hadoop.io.Text;
 
-public class OldestTreeReducer extends Reducer<Text, AgeDistrictWritable, Text, Text> {
+
+public class OldestTreeReducer extends Reducer<NullWritable, AgeDistrictWritable, Text, NullWritable> {
     @Override
-    protected void reduce(Text key, Iterable<AgeDistrictWritable> values, Context context) throws IOException, InterruptedException {
-        int maxAge = Integer.MIN_VALUE;
-        String district = "";
-
-        for (AgeDistrictWritable val : values) {
-            if (val.getAge().get() > maxAge) {
-                maxAge = val.getAge().get();
-                district = val.getDistrict().toString();
+    protected void reduce(NullWritable key, Iterable<AgeDistrictWritable> values, Context context) throws IOException, InterruptedException {
+        AgeDistrictWritable oldest = null;
+        for (AgeDistrictWritable value : values) {
+            if (oldest == null || value.getAge() > oldest.getAge()) {
+                oldest = value;
             }
         }
-
-        context.write(new Text("District with the oldest tree:"), new Text(district));
+        if (oldest != null) {
+            context.write(new Text(oldest.getDistrict()), NullWritable.get());
+        }
     }
 }

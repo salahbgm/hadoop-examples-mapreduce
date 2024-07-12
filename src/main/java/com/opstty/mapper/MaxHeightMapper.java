@@ -1,27 +1,18 @@
 package com.opstty.mapper;
 
+import java.io.IOException;
 import org.apache.hadoop.io.FloatWritable;
+import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
-import java.io.IOException;
-
-public class MaxHeightMapper extends Mapper<Object, Text, Text, FloatWritable> {
-    private Text species = new Text();
-    private FloatWritable height = new FloatWritable();
-
+public class MaxHeightMapper extends Mapper<LongWritable, Text, Text, FloatWritable> {
     @Override
-    protected void map(Object key, Text value, Context context) throws IOException, InterruptedException {
-        String line = value.toString();
-        if (line.startsWith("ID")) {
-            // Skip the header line
-            return;
-        }
-        String[] fields = line.split(";");
-        if (fields.length > 3) { // Remplace 2 par l'index correct pour l'espèce et 3 par l'index correct pour la hauteur
-            species.set(fields[2]);
-            height.set(Float.parseFloat(fields[3]));
-            context.write(species, height);
-        }
+    protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
+        if (key.get() == 0) return; // Ignorer la première ligne
+        String[] fields = value.toString().split(";");
+        String species = fields[3]; // Supposons que l'espèce est dans la quatrième colonne
+        float height = Float.parseFloat(fields[6]); // Supposons que la hauteur est dans la septième colonne
+        context.write(new Text(species), new FloatWritable(height));
     }
 }

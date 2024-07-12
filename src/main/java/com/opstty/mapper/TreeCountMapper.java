@@ -1,26 +1,18 @@
+
 package com.opstty.mapper;
 
+import java.io.IOException;
 import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
-import java.io.IOException;
-
-public class TreeCountMapper extends Mapper<Object, Text, Text, IntWritable> {
-    private Text species = new Text();
-    private final static IntWritable one = new IntWritable(1);
-
+public class TreeCountMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
     @Override
-    protected void map(Object key, Text value, Context context) throws IOException, InterruptedException {
-        String line = value.toString();
-        if (line.startsWith("ID")) {
-            // Skip the header line
-            return;
-        }
-        String[] fields = line.split(";");
-        if (fields.length > 2) { // Remplace 2 par l'index correct pour l'espèce
-            species.set(fields[2]);
-            context.write(species, one);
-        }
+    protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
+        if (key.get() == 0) return; // Ignorer la première ligne
+        String[] fields = value.toString().split(";");
+        String district = fields[1]; // Supposons que le district est dans la deuxième colonne
+        context.write(new Text(district), new IntWritable(1));
     }
 }
