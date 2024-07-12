@@ -99,7 +99,7 @@ $5,000) 1\
 (administrator  1\
 (and    1\
 (another    1\
-(any    1\
+(any    1
 
 
 ————————————————————————————————————————————————————————————————————————————————————
@@ -109,5 +109,5 @@ $5,000) 1\
 ## Download the file and put it in your HDFS home directory.
 
 **salahboughanmi@MBP-de-Salah ~ % scp /Users/salahboughanmi/Downloads/trees.csv salah.boughanmi@bigdata01.efrei.hadoop.clemlab.io:/home/salah.boughanmi/**\ 
-salah.boughanmi@bigdata01.efrei.hadoop.clemlab.io's password:\ 
-trees.csv                                                                                                  100%   16KB   1.6MB/s   00:00\ 
+salah.boughanmi@bigdata01.efrei.hadoop.clemlab.io's password: 
+\trees.csv                                                                                                  100%   16KB   1.6MB/s   00:00\ 
