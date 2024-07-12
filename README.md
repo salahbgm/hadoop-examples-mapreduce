@@ -1,7 +1,9 @@
 # hadoop-examples-mapreduce
 
 ## Send the JAR to the edge node
+```
 **salahboughanmi@MBP-de-Salah hadoop-examples-mapreduce % scp /Users/salahboughanmi/Desktop/bigdataframework1/hadoop-examples-mapreduce/target/hadoop-examples-mapreduce-1.0-SNAPSHOT-jar-with-dependencies.jar salah.boughanmi@bigdata01.efrei.hadoop.clemlab.io:/home/salah.boughanmi/**\
+```
 
 salah.boughanmi@bigdata01.efrei.hadoop.clemlab.io's password: 
 
@@ -9,13 +11,17 @@ salah.boughanmi@bigdata01.efrei.hadoop.clemlab.io's password:
 hadoop-examples-mapreduce.jar\
 
 ## Test of wordcount on input.txt 
-
+```
 **[salah.boughanmi@bigdata01 ~]$ cat input.txt**\
+```
+```
 La tour Eiffel [tuʁɛfɛl] est une tour de fer puddlé de 330 m de hauteur située à Paris, à l’extrémité nord-ouest du parc du Champ-de-Mars en bordure de la Seine dans le 7ᵉ arrondissement. Son adresse officielle est 5, avenue Anatole-France.
-
+```
 **[salah.boughanmi@bigdata01 ~]$ hdfs dfs -put /home/salah.boughanmi/input.txt /user/salah.boughanmi/**\ 
-
+```
 **[salah.boughanmi@bigdata01 ~]$ yarn jar hadoop-examples-mapreduce.jar wordcount /user/salah.boughanmi/input.txt /user/salah.boughanmi/output-districts**\
+```
+```
 24/07/12 16:40:39 INFO mapreduce.Job: Running job: job_1720701352744_0528\
 24/07/12 16:40:45 INFO mapreduce.Job: Job job_1720701352744_0528 running in uber mode : false\
 24/07/12 16:40:45 INFO mapreduce.Job:  map 0% reduce 0%\
@@ -83,9 +89,13 @@ La tour Eiffel [tuʁɛfɛl] est une tour de fer puddlé de 330 m de hauteur situ
         Bytes Read=64485\
     File Output Format Counters \
         Bytes Written=64691\
+```
 
 ## Proof of the wordcount
+```
 **[salah.boughanmi@bigdata01 ~]$ hdfs dfs -cat /user/salah.boughanmi/output-districts/part-r-00000**\
+```
+```
 #73956] 1\
 $5,000) 1\
 &   1\
@@ -100,7 +110,7 @@ $5,000) 1\
 (and    1\
 (another    1\
 (any    1
-
+```
 
 ————————————————————————————————————————————————————————————————————————————————————
 
