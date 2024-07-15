@@ -122,6 +122,41 @@ salahboughanmi@MBP-de-Salah ~ % scp /Users/salahboughanmi/Downloads/trees.csv sa
 salah.boughanmi@bigdata01.efrei.hadoop.clemlab.io's password: 
 trees.csv                                                                                                  100%   16KB   1.6MB/s   00:00
 ```
+```
+[salah.boughanmi@bigdata01 ~]$ hdfs dfs -put trees.csv 
+[salah.boughanmi@bigdata01 ~]$ hdfs dfs -ls
+Found 12 items
+drwx------   - salah.boughanmi salah.boughanmi          0 2024-07-08 20:00 .Trash
+drwx------   - salah.boughanmi salah.boughanmi          0 2024-07-12 16:40 .staging
+drwxr-xr-x   - salah.boughanmi salah.boughanmi          0 2024-07-08 15:59 data
+drwxr-xr-x   - salah.boughanmi salah.boughanmi          0 2024-07-08 16:59 gutenberg
+drwxr-xr-x   - salah.boughanmi salah.boughanmi          0 2024-07-08 17:06 gutenberg-output
+drwxr-xr-x   - salah.boughanmi salah.boughanmi          0 2024-07-08 17:49 gutenberg-output2
+-rw-r--r--   3 salah.boughanmi salah.boughanmi        253 2024-07-12 16:39 input.txt
+-rw-r--r--   3 salah.boughanmi salah.boughanmi     118577 2024-07-08 14:51 livre.txt
+drwxr-xr-x   - salah.boughanmi salah.boughanmi          0 2024-07-12 16:40 output-districts
+drwxr-xr-x   - salah.boughanmi salah.boughanmi          0 2024-07-08 11:52 raw
+-rw-r--r--   3 salah.boughanmi salah.boughanmi      16680 2024-07-15 09:26 trees.csv
+drwxr-xr-x   - salah.boughanmi salah.boughanmi          0 2024-07-08 15:36 wordcount
+```
+```
+[salah.boughanmi@bigdata01 ~]$ hdfs dfs -cat trees.csv 
+GEOPOINT;ARRONDISSEMENT;GENRE;ESPECE;FAMILLE;ANNEE PLANTATION;HAUTEUR;CIRCONFERENCE;ADRESSE;NOM COMMUN;VARIETE;OBJECTID;NOM_EV
+(48.857140829, 2.29533455314);7;Maclura;pomifera;Moraceae;1935;13.0;;Quai Branly, avenue de La Motte-Piquet, avenue de la Bourdonnais, avenue de Suffren;Oranger des Osages;;6;Parc du Champs de Mars
+(48.8685686134, 2.31331809304);8;Calocedrus;decurrens;Cupressaceae;1854;20.0;195.0;Cours-la-Reine, avenue Franklin-D.-Roosevelt, avenue Matignon, avenue Gabriel;Cèdre à encens;;11;Jardin des Champs Elysées
+(48.8768191638, 2.33210374339);9;Pterocarya;fraxinifolia;Juglandaceae;1862;22.0;330.0;Place d'Estienne-d'Orves;Pérocarya du Caucase;;14;Square Etienne d'Orves
+(48.8373323894, 2.40776275516);12;Celtis;australis;Cannabaceae;1906;16.0;295.0;27, boulevard Soult;Micocoulier de Provence;;16;Avenue 27 boulevard Soult
+(48.8341842636, 2.46130493573);12;Quercus;petraea;Fagaceae;1784;30.0;430.0;route ronde des Minimes;Chêne rouvre;;19;Bois de Vincennes (lac des minimes)
+(48.8325900983, 2.41116455985);12;Platanus;x acerifolia;Platanaceae;1860;45.0;405.0;Ile de Bercy;Platane commun;;21;Bois de Vincennes (Ile de Bercy)
+(48.8226749117, 2.33869560229);14;Platanus;x acerifolia;Platanaceae;1840;40.0;580.0;Bd Jourdan, avenue Reille, rue Gazan, rue de la Cité‚-Universitaire, rue Nansouty;Platane commun;;26;Parc Montsouris
+(48.8428118006, 2.2972574926);15;Alnus;glutinosa;Betulaceae;1933;16.0;220.0;Rue Th‚ophraste-Renaudot, rue L‚on-Lhermitte, rue Jean Formig‚, rue du Docteur Jacquem;Aulne glutineux;;28;Square Saint Lambert
+(48.8717782491, 2.27973325759);16;Aesculus;hippocastanum;Sapindaceae;;30.0;505.0;Avenue Foch;Marronnier d'Inde;;30;Avenue Foch
+(48.8802898189, 2.38157469859);19;Ginkgo;biloba;Ginkgoaceae;1913;33.0;230.0;Rue Manin, rue Botzaris;Arbre aux quarante écus;;46;Parc des Buttes Chaumont
+```
+
+
+
+
 
 ## 1.8.1 Districts containing trees (very easy)
 
