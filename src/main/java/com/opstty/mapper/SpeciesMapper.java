@@ -10,7 +10,7 @@ public class SpeciesMapper extends Mapper<LongWritable, Text, Text, NullWritable
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
         if (key.get() == 0) return; // Ignorer la première ligne
         String[] fields = value.toString().split(";");
-        String species = fields[3]; // Supposons que l'espèce est dans la quatrième colonne
+        String species = fields[3]; 
         context.write(new Text(species), NullWritable.get());
     }
 }

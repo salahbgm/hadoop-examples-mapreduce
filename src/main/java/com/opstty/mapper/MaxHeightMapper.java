@@ -12,7 +12,7 @@ public class MaxHeightMapper extends Mapper<LongWritable, Text, Text, FloatWrita
         if (key.get() == 0) return; // Ignorer la première ligne
         String[] fields = value.toString().split(";");
         String species = fields[3]; // Supposons que l'espèce est dans la quatrième colonne
-        float height = Float.parseFloat(fields[6]); // Supposons que la hauteur est dans la septième colonne
+        float height = Float.parseFloat(fields[6]); 
         context.write(new Text(species), new FloatWritable(height));
     }
 }

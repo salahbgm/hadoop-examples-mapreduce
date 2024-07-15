@@ -10,7 +10,7 @@ public class SortHeightMapper extends Mapper<LongWritable, Text, FloatWritable, 
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
         if (key.get() == 0) return; // Ignorer la première ligne
         String[] fields = value.toString().split(";");
-        float height = Float.parseFloat(fields[6]); // Supposons que la hauteur est dans la septième colonne
+        float height = Float.parseFloat(fields[6]); 
         context.write(new FloatWritable(height), value);
     }
 }
