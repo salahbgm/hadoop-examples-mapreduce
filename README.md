@@ -877,9 +877,125 @@ Found 2 items
 ```
 
 
-
-
 ## 1.8.7 District containing the most trees (very difficult)
+```
+[salah.boughanmi@bigdata01 ~]$ yarn jar hadoop-examples-mapreduce.jar maxtreedistrict /user/salah.boughanmi/trees.csv /user/salah.boughanmi/Districtcontainingthemosttrees
+
+
+24/07/15 13:28:35 INFO mapreduce.Job: Running job: job_1720701352744_0967
+24/07/15 13:28:41 INFO mapreduce.Job: Job job_1720701352744_0967 running in uber mode : false
+24/07/15 13:28:41 INFO mapreduce.Job:  map 0% reduce 0%
+24/07/15 13:28:48 INFO mapreduce.Job:  map 100% reduce 0%
+24/07/15 13:28:52 INFO mapreduce.Job:  map 100% reduce 100%
+24/07/15 13:28:52 INFO mapreduce.Job: Job job_1720701352744_0967 completed successfully
+24/07/15 13:28:52 INFO mapreduce.Job: Counters: 54
+	File System Counters
+		FILE: Number of bytes read=865
+		FILE: Number of bytes written=614425
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=16788
+		HDFS: Number of bytes written=80
+		HDFS: Number of read operations=8
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=2
+		HDFS: Number of bytes read erasure-coded=0
+	Job Counters 
+		Launched map tasks=1
+		Launched reduce tasks=1
+		Data-local map tasks=1
+		Total time spent by all maps in occupied slots (ms)=11382
+		Total time spent by all reduces in occupied slots (ms)=5468
+		Total time spent by all map tasks (ms)=3794
+		Total time spent by all reduce tasks (ms)=1367
+		Total vcore-milliseconds taken by all map tasks=3794
+		Total vcore-milliseconds taken by all reduce tasks=1367
+		Total megabyte-milliseconds taken by all map tasks=5827584
+		Total megabyte-milliseconds taken by all reduce tasks=2799616
+	Map-Reduce Framework
+		Map input records=98
+		Map output records=97
+		Map output bytes=665
+		Map output materialized bytes=865
+		Input split bytes=108
+		Combine input records=0
+		Combine output records=0
+		Reduce input groups=17
+		Reduce shuffle bytes=865
+		Reduce input records=97
+		Reduce output records=17
+		Spilled Records=194
+		Shuffled Maps =1
+		Failed Shuffles=0
+		Merged Map outputs=1
+		GC time elapsed (ms)=62
+		CPU time spent (ms)=1010
+		Physical memory (bytes) snapshot=1531604992
+		Virtual memory (bytes) snapshot=6704054272
+		Total committed heap usage (bytes)=1531969536
+		Peak Map Physical memory (bytes)=1195302912
+		Peak Map Virtual memory (bytes)=3113607168
+		Peak Reduce Physical memory (bytes)=336302080
+		Peak Reduce Virtual memory (bytes)=3590447104
+	Shuffle Errors
+		BAD_ID=0
+		CONNECTION=0
+		IO_ERROR=0
+		WRONG_LENGTH=0
+		WRONG_MAP=0
+		WRONG_REDUCE=0
+	File Input Format Counters 
+		Bytes Read=16680
+	File Output Format Counters 
+		Bytes Written=80
+
+```
+
+**Check the output**
+
+```
+[salah.boughanmi@bigdata01 ~]$ hdfs dfs -ls
+Found 19 items
+drwx------   - salah.boughanmi salah.boughanmi          0 2024-07-15 13:07 .Trash
+drwx------   - salah.boughanmi salah.boughanmi          0 2024-07-15 13:28 .staging
+drwxr-xr-x   - salah.boughanmi salah.boughanmi          0 2024-07-15 13:28 Districtcontainingthemosttrees
+drwxr-xr-x   - salah.boughanmi salah.boughanmi          0 2024-07-15 13:22 Districtcontainingtheoldesttree
+drwxr-xr-x   - salah.boughanmi salah.boughanmi          0 2024-07-15 11:02 Districtscontainingtrees
+drwxr-xr-x   - salah.boughanmi salah.boughanmi          0 2024-07-15 13:07 Maximumheightperkindoftree
+drwxr-xr-x   - salah.boughanmi salah.boughanmi          0 2024-07-15 11:58 Numberoftreesbykinds
+drwxr-xr-x   - salah.boughanmi salah.boughanmi          0 2024-07-15 11:26 Showallexistingspecies
+drwxr-xr-x   - salah.boughanmi salah.boughanmi          0 2024-07-15 13:17 Sortthetreesheightfromsmallesttolargest
+-rw-r--r--   3 salah.boughanmi salah.boughanmi      16680 2024-07-15 09:26 trees.csv
+
+
+[salah.boughanmi@bigdata01 ~]$ hdfs dfs -ls Districtcontainingthemosttrees
+Found 2 items
+-rw-r--r--   3 salah.boughanmi salah.boughanmi          0 2024-07-15 13:28 Districtcontainingthemosttrees/_SUCCESS
+-rw-r--r--   3 salah.boughanmi salah.boughanmi         80 2024-07-15 13:28 Districtcontainingthemosttrees/part-r-00000
+
+
+
+
+[salah.boughanmi@bigdata01 ~]$ hdfs dfs -cat Districtcontainingthemosttrees/part-r-00000
+11	1
+12	29
+13	2
+14	3
+15	1
+16	36
+17	1
+18	1
+19	6
+20	3
+3	1
+4	1
+5	2
+6	1
+7	3
+8	5
+9	1
+```
 
 
 
