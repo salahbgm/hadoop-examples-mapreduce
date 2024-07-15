@@ -757,6 +757,125 @@ Found 2 items
 ```
 
 ## 1.8.6 District containing the oldest tree (difficult)
+```
+[salah.boughanmi@bigdata01 ~]$ yarn jar hadoop-examples-mapreduce.jar oldesttree /user/salah.boughanmi/trees.csv /user/salah.boughanmi/Districtcontainingtheoldesttree
+
+24/07/15 13:22:40 INFO mapreduce.Job: Running job: job_1720701352744_0964
+24/07/15 13:22:47 INFO mapreduce.Job: Job job_1720701352744_0964 running in uber mode : false
+24/07/15 13:22:47 INFO mapreduce.Job:  map 0% reduce 0%
+24/07/15 13:22:52 INFO mapreduce.Job:  map 100% reduce 0%
+24/07/15 13:22:56 INFO mapreduce.Job:  map 100% reduce 100%
+24/07/15 13:22:56 INFO mapreduce.Job: Job job_1720701352744_0964 completed successfully
+24/07/15 13:22:56 INFO mapreduce.Job: Counters: 54
+	File System Counters
+		FILE: Number of bytes read=1315
+		FILE: Number of bytes written=616409
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=16788
+		HDFS: Number of bytes written=7
+		HDFS: Number of read operations=8
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=2
+		HDFS: Number of bytes read erasure-coded=0
+	Job Counters 
+		Launched map tasks=1
+		Launched reduce tasks=1
+		Data-local map tasks=1
+		Total time spent by all maps in occupied slots (ms)=11331
+		Total time spent by all reduces in occupied slots (ms)=5652
+		Total time spent by all map tasks (ms)=3777
+		Total time spent by all reduce tasks (ms)=1413
+		Total vcore-milliseconds taken by all map tasks=3777
+		Total vcore-milliseconds taken by all reduce tasks=1413
+		Total megabyte-milliseconds taken by all map tasks=5801472
+		Total megabyte-milliseconds taken by all reduce tasks=2893824
+	Map-Reduce Framework
+		Map input records=98
+		Map output records=77
+		Map output bytes=1155
+		Map output materialized bytes=1315
+		Input split bytes=108
+		Combine input records=0
+		Combine output records=0
+		Reduce input groups=1
+		Reduce shuffle bytes=1315
+		Reduce input records=77
+		Reduce output records=1
+		Spilled Records=154
+		Shuffled Maps =1
+		Failed Shuffles=0
+		Merged Map outputs=1
+		GC time elapsed (ms)=62
+		CPU time spent (ms)=1050
+		Physical memory (bytes) snapshot=1531645952
+		Virtual memory (bytes) snapshot=6698348544
+		Total committed heap usage (bytes)=1537736704
+		Peak Map Physical memory (bytes)=1199173632
+		Peak Map Virtual memory (bytes)=3111333888
+		Peak Reduce Physical memory (bytes)=332472320
+		Peak Reduce Virtual memory (bytes)=3587014656
+	Shuffle Errors
+		BAD_ID=0
+		CONNECTION=0
+		IO_ERROR=0
+		WRONG_LENGTH=0
+		WRONG_MAP=0
+		WRONG_REDUCE=0
+	File Input Format Counters 
+		Bytes Read=16680
+	File Output Format Counters 
+		Bytes Written=7
+```
+
+**Check the output**
+```
+[salah.boughanmi@bigdata01 ~]$ hdfs dfs -ls
+Found 18 items
+drwx------   - salah.boughanmi salah.boughanmi          0 2024-07-15 13:07 .Trash
+drwx------   - salah.boughanmi salah.boughanmi          0 2024-07-15 13:22 .staging
+drwxr-xr-x   - salah.boughanmi salah.boughanmi          0 2024-07-15 13:22 Districtcontainingtheoldesttree
+drwxr-xr-x   - salah.boughanmi salah.boughanmi          0 2024-07-15 11:02 Districtscontainingtrees
+drwxr-xr-x   - salah.boughanmi salah.boughanmi          0 2024-07-15 13:07 Maximumheightperkindoftree
+drwxr-xr-x   - salah.boughanmi salah.boughanmi          0 2024-07-15 11:58 Numberoftreesbykinds
+drwxr-xr-x   - salah.boughanmi salah.boughanmi          0 2024-07-15 11:26 Showallexistingspecies
+drwxr-xr-x   - salah.boughanmi salah.boughanmi          0 2024-07-15 13:17 Sortthetreesheightfromsmallesttolargest
+-rw-r--r--   3 salah.boughanmi salah.boughanmi      16680 2024-07-15 09:26 trees.csv
+
+
+[salah.boughanmi@bigdata01 ~]$ hdfs dfs -ls Sortthetreesheightfromsmallesttolargest
+Found 2 items
+-rw-r--r--   3 salah.boughanmi salah.boughanmi          0 2024-07-15 13:17 Sortthetreesheightfromsmallesttolargest/_SUCCESS
+-rw-r--r--   3 salah.boughanmi salah.boughanmi       3994 2024-07-15 13:17 Sortthetreesheightfromsmallesttolargest/part-r-00000
+
+
+
+[salah.boughanmi@bigdata01 ~]$ hdfs dfs -cat Sortthetreesheightfromsmallesttolargest/part-r-00000
+3 - Fagus sylvatica (Fagaceae)	2.0
+89 - Taxus baccata (Taxaceae)	5.0
+62 - Cedrus atlantica (Pinaceae)	6.0
+39 - Araucaria araucana (Araucariaceae)	9.0
+44 - Styphnolobium japonicum (Fabaceae)	10.0
+32 - Quercus suber (Fagaceae)	10.0
+95 - Pinus bungeana (Pinaceae)	10.0
+61 - Gymnocladus dioicus (Fabaceae)	10.0
+63 - Fagus sylvatica (Fagaceae)	10.0
+4 - Robinia pseudoacacia (Fabaceae)	11.0
+93 - Diospyros virginiana (Ebenaceae)	12.0
+66 - Magnolia grandiflora (Magnoliaceae)	12.0
+50 - Zelkova carpinifolia (Ulmaceae)	12.0
+7 - Eucommia ulmoides (Eucomiaceae)	12.0
+48 - Acer monspessulanum (Sapindacaees)	12.0
+58 - Diospyros kaki (Ebenaceae)	12.0
+33 - Broussonetia papyrifera (Moraceae)	12.0
+71 - Davidia involucrata (Cornaceae)	12.0
+36 - Taxus baccata (Taxaceae)	13.0
+6 - Maclura pomifera (Moraceae)	13.0
+68 - Diospyros kaki (Ebenaceae)	14.0
+96 - Pinus coulteri (Pinaceae)	14.0
+```
+
 
 
 
