@@ -1,20 +1,25 @@
 package com.opstty.mapper;
 
-import java.io.IOException;
-import org.apache.hadoop.io.LongWritable;
-import org.apache.hadoop.io.NullWritable;
-import org.apache.hadoop.io.Text;
+import org.apache.hadoop.io.*;
 import org.apache.hadoop.mapreduce.Mapper;
-import com.opstty.writable.AgeDistrictWritable;
 
+import java.io.IOException;
 
-public class OldestTreeMapper extends Mapper<LongWritable, Text, NullWritable, AgeDistrictWritable> {
-    @Override
-    protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
-        if (key.get() == 0) return; // Ignorer la première ligne
-        String[] fields = value.toString().split(";");
-        int age = Integer.parseInt(fields[5]); 
-        String district = fields[1]; 
-        context.write(NullWritable.get(), new AgeDistrictWritable(age, district));
+public class OldestTreeMapper extends Mapper<Object, Text, NullWritable, MapWritable> {
+
+    public int curr_line = 0;
+
+    public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
+        if (curr_line != 0) {
+            try {
+                Integer year = Integer.parseInt(value.toString().split(";")[5]);
+                MapWritable map = new MapWritable();
+                map.put(new IntWritable(Integer.parseInt(value.toString().split(";")[1])), new IntWritable(year));
+                context.write(NullWritable.get(), map);
+            } catch (NumberFormatException ex) {
+                // If the year is not a integer, skip by catching the error from the parseFloat() method
+            }
+        } curr_line++;
     }
+
 }

@@ -1,16 +1,29 @@
 package com.opstty.mapper;
-import java.io.IOException;
+
 import org.apache.hadoop.io.FloatWritable;
-import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
-public class SortHeightMapper extends Mapper<LongWritable, Text, FloatWritable, Text> {
-    @Override
-    protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
-        if (key.get() == 0) return; // Ignorer la première ligne
-        String[] fields = value.toString().split(";");
-        float height = Float.parseFloat(fields[6]); 
-        context.write(new FloatWritable(height), value);
+import java.io.IOException;
+
+public class SortHeightMapper extends Mapper<Object, Text, FloatWritable, Text> {
+
+    public int line = 0 ;
+
+    public void map(Object key,Text value,Context context) throws IOException, InterruptedException{
+        if ( line!= 0 ){
+
+            try{
+                String[] line_tokens = value.toString().split(";");
+                Float height = Float.parseFloat(line_tokens[6]);
+                context.write(new FloatWritable(height),
+                        new Text(line_tokens[11] + " - " + line_tokens[2] + " " + line_tokens[3] + " (" + line_tokens[4] + ")"));
+            }catch(NumberFormatException ex) {
+                // System.out.println(""+ ex);
+            }
+
+        }
+        line++;
     }
+
 }
