@@ -997,6 +997,14 @@ Found 2 items
 9	1
 ```
 
+## 1.8.7 District containing the most trees (very difficult) : PHASE 2
 
+
+```
+[salah.boughanmi@bigdata01 ~]$ yarn jar hadoop-examples-mapreduce.jar maxtreedistrict2 /user/salah.boughanmi/trees.csv /user/salah.boughanmi/DistrictcontainingthemosttreesPhase2
+
+
+
+```
 
 
