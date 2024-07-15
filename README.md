@@ -528,9 +528,110 @@ coulteri	1
 
 ## 1.8.4 Maximum height per kind of tree (average)
 
+```
+[salah.boughanmi@bigdata01 ~]$ yarn jar hadoop-examples-mapreduce.jar maxheight /user/salah.boughanmi/trees.csv /user/salah.boughanmi/Maximumheightperkindoftree
+
+24/07/15 13:07:24 INFO mapreduce.Job: Running job: job_1720701352744_0960
+24/07/15 13:07:30 INFO mapreduce.Job: Job job_1720701352744_0960 running in uber mode : false
+24/07/15 13:07:30 INFO mapreduce.Job:  map 0% reduce 0%
+24/07/15 13:07:36 INFO mapreduce.Job:  map 100% reduce 0%
+24/07/15 13:07:39 INFO mapreduce.Job:  map 100% reduce 100%
+24/07/15 13:07:40 INFO mapreduce.Job: Job job_1720701352744_0960 completed successfully
+24/07/15 13:07:40 INFO mapreduce.Job: Counters: 54
+	File System Counters
+		FILE: Number of bytes read=727
+		FILE: Number of bytes written=614851
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=16788
+		HDFS: Number of bytes written=675
+		HDFS: Number of read operations=8
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=2
+		HDFS: Number of bytes read erasure-coded=0
+	Job Counters 
+		Launched map tasks=1
+		Launched reduce tasks=1
+		Data-local map tasks=1
+		Total time spent by all maps in occupied slots (ms)=11190
+		Total time spent by all reduces in occupied slots (ms)=5400
+		Total time spent by all map tasks (ms)=3730
+		Total time spent by all reduce tasks (ms)=1350
+		Total vcore-milliseconds taken by all map tasks=3730
+		Total vcore-milliseconds taken by all reduce tasks=1350
+		Total megabyte-milliseconds taken by all map tasks=5729280
+		Total megabyte-milliseconds taken by all reduce tasks=2764800
+	Map-Reduce Framework
+		Map input records=98
+		Map output records=96
+		Map output bytes=1369
+		Map output materialized bytes=727
+		Input split bytes=108
+		Combine input records=96
+		Combine output records=45
+		Reduce input groups=45
+		Reduce shuffle bytes=727
+		Reduce input records=45
+		Reduce output records=45
+		Spilled Records=90
+		Shuffled Maps =1
+		Failed Shuffles=0
+		Merged Map outputs=1
+		GC time elapsed (ms)=68
+		CPU time spent (ms)=1080
+		Physical memory (bytes) snapshot=1545805824
+		Virtual memory (bytes) snapshot=6701871104
+		Total committed heap usage (bytes)=1597505536
+		Peak Map Physical memory (bytes)=1201111040
+		Peak Map Virtual memory (bytes)=3113697280
+		Peak Reduce Physical memory (bytes)=344694784
+		Peak Reduce Virtual memory (bytes)=3588173824
+	Shuffle Errors
+		BAD_ID=0
+		CONNECTION=0
+		IO_ERROR=0
+		WRONG_LENGTH=0
+		WRONG_MAP=0
+		WRONG_REDUCE=0
+	File Input Format Counters 
+		Bytes Read=16680
+	File Output Format Counters 
+		Bytes Written=675
+```
+**Check the output**
+```
+[salah.boughanmi@bigdata01 ~]$ hdfs dfs -ls
+Found 16 items
+drwx------   - salah.boughanmi salah.boughanmi          0 2024-07-15 13:07 .Trash
+drwx------   - salah.boughanmi salah.boughanmi          0 2024-07-15 13:07 .staging
+drwxr-xr-x   - salah.boughanmi salah.boughanmi          0 2024-07-15 11:02 Districtscontainingtrees
+drwxr-xr-x   - salah.boughanmi salah.boughanmi          0 2024-07-15 13:07 Maximumheightperkindoftree
+drwxr-xr-x   - salah.boughanmi salah.boughanmi          0 2024-07-15 11:58 Numberoftreesbykinds
+-rw-r--r--   3 salah.boughanmi salah.boughanmi      16680 2024-07-15 09:26 trees.csv
 
 
+[salah.boughanmi@bigdata01 ~]$ hdfs dfs -ls Maximumheightperkindoftree
+Found 2 items
+-rw-r--r--   3 salah.boughanmi salah.boughanmi          0 2024-07-15 13:07 Maximumheightperkindoftree/_SUCCESS
+-rw-r--r--   3 salah.boughanmi salah.boughanmi        675 2024-07-15 13:07 Maximumheightperkindoftree/part-r-00000
 
+
+[salah.boughanmi@bigdata01 ~]$ hdfs dfs -cat Maximumheightperkindoftree/part-r-00000
+araucana	9.0
+atlantica	25.0
+australis	16.0
+baccata	13.0
+bignonioides	15.0
+biloba	33.0
+bungeana	10.0
+cappadocicum	16.0
+carpinifolia	30.0
+colurna	20.0
+coulteri	14.0
+decurrens	20.0
+dioicus	10.0
+```
 
 ## 1.8.5 Sort the trees height from smallest to largest (average)
 
